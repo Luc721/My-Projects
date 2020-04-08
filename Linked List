@@ -1,0 +1,188 @@
+class LinkedList
+{
+int count=0;
+    class Node
+    {
+        int data;
+        Node next;
+
+        Node(int data)
+        {
+            this.data= data;
+
+        }
+    }
+
+    static Node head;
+    static Node tail;
+
+    void addNode(int a)
+        {
+        Node new_node = new Node(a);
+        count++;
+
+        if(head ==null)
+        {
+            head = new_node;
+            tail = new_node;
+        }
+
+
+        else
+        {
+            tail.next= new_node;
+            tail = new_node;
+        }
+
+    }
+    void start_insert(int a)
+    {
+       Node insert_start =  new Node(a);
+       count++;
+       insert_start.next=head;
+       head = insert_start;
+
+
+    }
+    void mid_insert(int a,int b)
+    {Node add = head;
+        for(int i=0;i<count;i++)
+        {
+            if(add.data==a)
+            {
+                Node mid_add = new Node(b);
+
+                mid_add.next=add.next;
+                add.next=mid_add;
+                break;
+
+            }
+            else
+                {
+                add = head.next;
+                }
+        }
+        count++;
+    }
+
+    void start_delete()
+    {
+        head=head.next;
+        count--;
+    }
+
+    void mid_delete(int a)
+    {
+        Node trav = head;
+        Node trav1 =head;
+        for(int i=1;i<a-1;i++)
+        {
+            trav=trav.next;
+        }
+
+        for(int i =1;i<a;i++)
+        {
+            trav1=trav1.next;
+        }
+
+        trav.next=trav1.next;
+        count--;
+
+
+
+    }
+
+    void last_delete()
+    {
+        Node last_trav = head;
+
+        for(int i=1;i<count-1;i++)
+        {
+                if(last_trav.next==tail)
+                {
+                    last_trav.next=null;
+                }
+
+                else{
+                    last_trav=last_trav.next;
+                }
+        }
+
+        count--;
+    }
+
+    void traverse(int a)
+    {
+    Node trav = head;
+    for(int i=1;i<a;i++)
+    {
+        trav=trav.next;
+    }
+    System.out.println(trav.data);
+
+    }
+
+    void reverse()
+    {
+        Node temp=head;
+        head=tail;
+        int x=count-1;
+
+        for(int i =1;i<count;i++)
+        {
+            Node rev =temp;
+
+            for(int j=1;j<=x;j++)
+            {
+
+                if(rev.next==tail)
+                {
+                    tail.next=rev;
+                    tail=rev;
+
+
+
+                }
+
+                else
+                {
+                    rev=rev.next;
+                }
+
+            }
+          x--;
+        }
+
+
+    }
+    void display()
+    {
+        Node show= head;
+        for(int i=0;i<count;i++)
+        {
+            System.out.println(show.data);
+            show = show.next;
+        }
+    }
+
+
+    public static void main(String[] args)
+    {
+        LinkedList obj = new LinkedList();
+        obj.addNode(2);
+        obj.addNode(5);
+        obj.addNode(6);
+        obj.start_insert(4);
+        obj.mid_insert(2,1);
+        obj.reverse();
+        obj.display();
+
+
+
+
+
+    }
+
+
+
+}
